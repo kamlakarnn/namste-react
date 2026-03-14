@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "i am making first react application",
   "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel buld index.html",
     "test": "jest"
   },
   "author": "",
