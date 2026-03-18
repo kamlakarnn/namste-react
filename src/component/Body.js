@@ -2,10 +2,11 @@ import React from "react";
 import resList from "../utils/mockData";
 import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Shimmer from "./shimmer";
 
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);  
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
@@ -43,7 +44,7 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList =filteredRestaurants.filter(
+            const filteredList = filteredRestaurants.filter(
               (res) => res.data.avgRating > 4,
             );
             setFilteredRestaurants(filteredList);
@@ -64,15 +65,14 @@ const Body = () => {
           onClick={() => {
             //filter the restaurant cards and update the ui
             console.log(searchText);
-             //we filter the restaurant from listofrestaurants
+            //we filter the restaurant from listofrestaurants
             const filteredRestaurants = listOfRestaurants.filter((res) => {
               const name = res?.data?.name;
               if (!name) return false;
               return name.toLowerCase().includes(searchText.toLowerCase());
             });
 
-            setFilteredRestaurants(filteredRestaurants)
-
+            setFilteredRestaurants(filteredRestaurants);
           }}
         >
           Search
@@ -96,7 +96,12 @@ const Body = () => {
         {/* // * looping through the <RestaurentCard /> components Using Array.map() method */}
 
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+          <Link
+            key={restaurant.data.id}
+            to={"/restaurant/" + restaurant.data.id}
+          >
+            <RestaurantCard resData={restaurant} />
+          </Link>
         ))}
 
         {/* // * or */}
