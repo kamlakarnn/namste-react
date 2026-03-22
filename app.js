@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/component/Header";
 import Body from "./src/component/Body";
@@ -7,6 +7,7 @@ import Contact from "./src/component/Contact";
 import Footer from "./src/component/Footer";
 import Restaurantmenu  from "./src/component/Restaurantmenu";
 import Error from "./src/component/Error";
+// import Grocery from "./src/component/Grocery"
 
 
 
@@ -27,6 +28,8 @@ const Title = () => (
     HI i am title component
   </h1>
 );
+
+const Grocery =lazy(() => import("./src/component/Grocery"))
 
 // this is another component in that i am using title component this is called composition of component.
 const HeadingComponet = () => (
@@ -68,6 +71,13 @@ const appRouter = createBrowserRouter([
     path: "/contact",
     element: <Contact />,
  
+  },
+   {
+    path: "/grocery",
+    element: 
+      <Suspense fallback={<h1>Loading...</h1>}> <Grocery/> </Suspense>
+    ,
+  
   },
   {
     path: "/restaurant/:resid",

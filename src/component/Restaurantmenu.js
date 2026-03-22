@@ -1,32 +1,33 @@
 import React from "react";
-import resList from "../utils/mockData";
 import Shimmer from "./shimmer";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import useRestraunantMenu from "../utils/useRestraunantMenu";
 
 const Restaurantmenu = () => {
-  const [resInfo, setResInfo] = useState(null);
   const { resid } = useParams();
 
   // console.log(resid);
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+//   useEffect(() => {
+//     fetchMenu();
+//   }, []);
 
-  const fetchMenu = async () => {
-    // const data = await fetch()
+//   const fetchMenu = async () => {
+//     // const data = await fetch()
 
-    // const data = resList;
-    // setResInfo(data)
+//     // const data = resList;
+//     // setResInfo(data)
 
-    const data = resList.filter(
-      (restaurant) => restaurant.data.id === resid
-    );
+//     const data = resList.filter(
+//       (restaurant) => restaurant.data.id === resid
+//     );
 
-     console.log(data,"data of restaurant menu");
-     setResInfo(data );
-  };
+//      console.log(data,"data of restaurant menu");
+//      setResInfo(data );
+//   };
+   
+    const resInfo = useRestraunantMenu(resid);
+
   if (resInfo === null) return <Shimmer />;
 
   const { name, slugs, cuisines, address, maxDeliveryTime } = resInfo[0].data;

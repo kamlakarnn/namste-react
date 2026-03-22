@@ -1,10 +1,18 @@
-const About = () => {
-  return (
-    <div>
-      <h2>about uaa</h2>
+import React from "react";
 
-    </div>
-  );
-};
 
-export default About;
+class About extends React.Component {
+  constructor(props){
+    super(props);
+    console.log("constructor called");  
+  }         
+  render() {
+    return (
+      <div>
+        <h2>this is about us compoent </h2>
+      </div>
+    );
+  }
+}
+
+export default About;   
